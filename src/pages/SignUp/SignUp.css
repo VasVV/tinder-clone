@@ -12,7 +12,8 @@
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
   height: 25px;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -29,7 +30,7 @@ input {
   border-radius: 5px;
 }
 
-input[type="submit"] {
+button {
   cursor: pointer;
   font-size: 15px;
   background: hwb(162 96% 0%);
@@ -37,6 +38,7 @@ input[type="submit"] {
   border-radius: 20px;
   color: black;
   padding: 10px 20px;
+  margin-right: 5px;
 }
 
 input[type="submit"]:hover {
@@ -55,7 +57,7 @@ input[type="submit"]:hover {
   padding: 10rem;
   text-align: center;
   text-shadow: 1px 1px 1px black, 0 0 1em blue, 0 0 0.2em blue;
-  font-size: 0pt;
+  font-size: 10pt;
 }
 
 .list-container {

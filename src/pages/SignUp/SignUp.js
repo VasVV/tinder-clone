@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
 const SignUp = () => {
@@ -7,6 +7,8 @@ const SignUp = () => {
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const navigate = useNavigate();
 
   // User Login info
   const database = [
@@ -48,7 +50,7 @@ const SignUp = () => {
     <div className='form'>
       <form onSubmit={handleSubmit}>
         <div className='input-container'>
-          <label>What's your name? </label>
+          <label htmlFor='uname'>What's your name? </label>
           <input
             type='text'
             name='uname'
@@ -57,7 +59,7 @@ const SignUp = () => {
           />
         </div>
         <div className='input-container'>
-          <label>Enter your password </label>
+          <label htmlFor='pass'>Enter your password </label>
           <input
             type='password'
             name='pass'
@@ -66,7 +68,9 @@ const SignUp = () => {
           />
         </div>
         <div className='button-container'>
-          <input type='submit' />
+          <button type='submit' onClick={() => navigate("/signup2")}>
+            Next
+          </button>
         </div>
       </form>
     </div>
