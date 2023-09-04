@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./SignUp.css";
 
-import "./Login.css";
-
-const Login = () => {
+const SignUp = () => {
   // React States
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
@@ -49,7 +48,7 @@ const Login = () => {
     <div className='form'>
       <form onSubmit={handleSubmit}>
         <div className='input-container'>
-          <label>Username </label>
+          <label>What's your name? </label>
           <input
             type='text'
             name='uname'
@@ -58,7 +57,7 @@ const Login = () => {
           />
         </div>
         <div className='input-container'>
-          <label>Password </label>
+          <label>Enter your password </label>
           <input
             type='password'
             name='pass'
@@ -76,12 +75,12 @@ const Login = () => {
   return (
     <div className='app'>
       <div className='login-form'>
-        <div className='title'>Sign In</div>
-        <Link to='signup'>Don't have an account? Sign up!</Link>
+        <div className='title'>Sign Up</div>
+        <Link to='/'>Already have an account? Sign in!</Link>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
