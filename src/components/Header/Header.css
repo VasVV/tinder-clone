@@ -1,0 +1,33 @@
+body {
+  color: #44474a;
+}
+
+.container {
+  font-family: helvetica, arial, sans-serif;
+  padding: 4em 2em 50em 2em;
+  position: relative;
+}
+
+table {
+  text-align: center;
+  width: 100%;
+
+  th {
+    background: #f8f8f8;
+    font-weight: bold;
+  }
+
+  th,
+  td {
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+    padding: 15px 10px;
+  }
+}
+
+.sticky-thc {
+  th {
+    position: sticky;
+    top: 0;
+  }
+}

@@ -4,8 +4,8 @@ import "./SignUp.css";
 
 const SignUp3 = () => {
   // React States
-  const [errorAge, setErrorAge] = useState(false);
-  const [errorLocation, setErrorLocation] = useState(false);
+  const [errorPhoto, setErrorPhoto] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [age, setAge] = useState(0);
   const [location, setLocation] = useState("");
@@ -15,10 +15,7 @@ const SignUp3 = () => {
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-    var { age, location } = document.forms[0];
-    if (age.value < 18) {
-      setErrorAge(true);
-    }
+    var { email, photo } = document.forms[0];
   };
 
   // JSX code for login form
@@ -29,9 +26,18 @@ const SignUp3 = () => {
           <label htmlFor='photo'>Upload your photo</label>
           <input
             type='file'
-            name='age'
+            name='photo'
             required
-            className={errorAge ? "error" : ""}
+            className={errorPhoto ? "error" : ""}
+          />
+        </div>
+        <div className='input-container'>
+          <label htmlFor='email'>What's your e-mail?</label>
+          <input
+            type='email'
+            name='email'
+            required
+            className={errorEmail ? "error" : ""}
           />
         </div>
         <div className='button-container'>

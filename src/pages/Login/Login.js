@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase.config";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -8,68 +10,57 @@ const Login = () => {
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
-    },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorPassword(true);
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      setErrorUsername(true);
-    }
+  const handleSubmit = async () => {
+    await signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        navigate("/main");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        if (errorCode === "auth/wrong-password") {
+          setErrorPassword(true);
+        } else if (errorCode === "auth/user-not-found") {
+          setErrorUsername(true);
+        }
+      });
   };
 
   // JSX code for login form
   const renderForm = (
     <div className='form'>
-      <form onSubmit={handleSubmit}>
+      <div>
         <div className='input-container'>
-          <label>Username </label>
+          <label htmlFor='email'>E-mail </label>
           <input
-            type='text'
-            name='uname'
+            type='email'
+            name='email'
             required
             className={errorUsername ? "error" : ""}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className='input-container'>
-          <label>Password </label>
+          <label htmlFor='password'>Password </label>
           <input
             type='password'
             name='pass'
             required
             className={errorPassword ? "error" : ""}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className='button-container'>
-          <input type='submit' />
+          <button onClick={() => handleSubmit()}>Submit</button>
         </div>
-      </form>
+      </div>
     </div>
   );
 
