@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
+import { useSelector, useDispatch } from "react-redux";
+import { changeInfo } from "../../redux/userInfo";
 
 const SignUp = () => {
   // React States
@@ -9,6 +11,10 @@ const SignUp = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const navigate = useNavigate();
+
+  const userInfo = useSelector((state) => state.userInfo);
+
+  const dispatch = useDispatch();
 
   // User Login info
   const database = [
@@ -26,23 +32,8 @@ const SignUp = () => {
     //Prevent page reload
     event.preventDefault();
 
-    var { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorPassword(true);
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      setErrorUsername(true);
-    }
+    var { name, password } = document.forms[0];
+    dispatch(changeInfo(name, password));
   };
 
   // JSX code for login form
