@@ -18,21 +18,10 @@ const SignUp = () => {
 
   const dispatch = useDispatch();
 
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
-    },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
-
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
+    console.log("asf");
     dispatch(changeInfo({ userName, password }));
     navigate("/signup2");
   };

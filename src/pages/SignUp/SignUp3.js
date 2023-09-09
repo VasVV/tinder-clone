@@ -7,15 +7,21 @@ const SignUp3 = () => {
   const [errorPhoto, setErrorPhoto] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [age, setAge] = useState(0);
-  const [location, setLocation] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-    var { email, photo } = document.forms[0];
+    //here will be dispatchers
+    navigate("/");
+  };
+
+  const back = () => {
+    //here will be dispatchers
+    navigate("/signup2");
   };
 
   // JSX code for login form
@@ -41,7 +47,7 @@ const SignUp3 = () => {
           />
         </div>
         <div className='button-container'>
-          <button type='button' onClick={() => navigate("/signup2")}>
+          <button type='button' onClick={() => back()}>
             Back
           </button>
           <button type='submit'>Finish</button>

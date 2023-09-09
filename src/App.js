@@ -4,6 +4,7 @@ import SignUp from "./pages/SignUp/SignUp.js";
 import SignUp2 from "./pages/SignUp/SignUp2.js";
 import SignUp3 from "./pages/SignUp/SignUp3.js";
 import Main from "./pages/Main/Main.js";
+import Profile from "./pages/Profile/Profile.js";
 import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux";
@@ -19,6 +20,7 @@ const App = () => {
           <Route path='signup2' element={<SignUp2 />} />
           <Route path='signup3' element={<SignUp3 />} />
           <Route path='main' element={<Main />} />
+          <Route path='profile' element={<Profile />} />
         </Routes>
       </Provider>
     </>

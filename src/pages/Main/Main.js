@@ -1,80 +1,47 @@
 import React, { useState } from "react";
-import TinderCard from "react-tinder-card";
 import Header from "../../components/Header/Header";
-
-const db = [
-  {
-    name: "Richard Hendricks",
-    url: "./img/richard.jpg",
-  },
-  {
-    name: "Erlich Bachman",
-    url: "./img/erlich.jpg",
-  },
-  {
-    name: "Monica Hall",
-    url: "./img/monica.jpg",
-  },
-  {
-    name: "Jared Dunn",
-    url: "./img/jared.jpg",
-  },
-  {
-    name: "Dinesh Chugtai",
-    url: "./img/dinesh.jpg",
-  },
-];
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import CloseIcon from "@mui/icons-material/Close";
+import Alexa from "../../imgs/samplePerson.jpeg";
+import "./Main.css";
 
 function Main() {
-  const characters = db;
-  const [lastDirection, setLastDirection] = useState();
-
-  const swiped = (direction, nameToDelete) => {
-    console.log("removing: " + nameToDelete);
-    setLastDirection(direction);
-  };
-
-  const outOfFrame = (name) => {
-    console.log(name + " left the screen!");
-  };
-
   return (
-    <>
+    <div className='main'>
       <Header />
-      <div>
-        <link
-          href='https://fonts.googleapis.com/css?family=Damion&display=swap'
-          rel='stylesheet'
-        />
-        <link
-          href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
-          rel='stylesheet'
-        />
-        <h1>React Tinder Card</h1>
-        <div className='cardContainer'>
-          {characters.map((character) => (
-            <TinderCard
-              className='swipe'
-              key={character.name}
-              onSwipe={(dir) => swiped(dir, character.name)}
-              onCardLeftScreen={() => outOfFrame(character.name)}
+      <div className='card-div'>
+        <Card sx={{ minWidth: 275 }}>
+          <CardContent>
+            <Typography
+              sx={{ fontSize: 28 }}
+              color='text.secondary'
+              gutterBottom
             >
-              <div
-                style={{ backgroundImage: "url(" + character.url + ")" }}
-                className='card'
-              >
-                <h3>{character.name}</h3>
-              </div>
-            </TinderCard>
-          ))}
-        </div>
-        {lastDirection ? (
-          <h2 className='infoText'>You swiped {lastDirection}</h2>
-        ) : (
-          <h2 className='infoText' />
-        )}
+              ALEXA
+            </Typography>
+            <Typography variant='h5' component='div'>
+              <img className='profile-picture' src={Alexa} />
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color='text.secondary'>
+              Saint-Petersburg
+            </Typography>
+          </CardContent>
+          <div className='like-dislike'>
+            <Button size='large'>
+              <FavoriteBorderIcon />
+            </Button>
+            <Button size='large'>
+              <CloseIcon />
+            </Button>
+          </div>
+        </Card>
       </div>
-    </>
+    </div>
   );
 }
 

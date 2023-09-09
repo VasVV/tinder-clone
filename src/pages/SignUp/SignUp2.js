@@ -15,10 +15,18 @@ const SignUp2 = () => {
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-    var { age, location } = document.forms[0];
-    if (age.value < 18) {
+
+    if (age < 18) {
       setErrorAge(true);
     }
+
+    //here will be dispatchers
+    navigate("/signup3");
+  };
+
+  const back = () => {
+    //here will be dispatchers
+    navigate("/signup");
   };
 
   // JSX code for login form
@@ -32,6 +40,7 @@ const SignUp2 = () => {
             name='age'
             required
             className={errorAge ? "error" : ""}
+            onChange={(e) => setAge(e.target.value)}
           />
         </div>
         <div className='input-container'>
@@ -41,15 +50,14 @@ const SignUp2 = () => {
             name='location'
             required
             className={errorLocation ? "error" : ""}
+            onChange={(e) => setLocation(e.target.value)}
           />
         </div>
         <div className='button-container'>
-          <button type='button' onClick={() => navigate("/signup")}>
+          <button type='button' onClick={() => back()}>
             Back
           </button>
-          <button type='submit' onClick={() => navigate("/signup3")}>
-            Next
-          </button>
+          <button type='submit'>Next</button>
         </div>
       </form>
     </div>
