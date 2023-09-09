@@ -6,6 +6,8 @@ import { changeInfo } from "../../redux/userInfo";
 
 const SignUp = () => {
   // React States
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,9 +33,8 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-
-    var { name, password } = document.forms[0];
-    dispatch(changeInfo(name, password));
+    dispatch(changeInfo({ userName, password }));
+    navigate("/signup2");
   };
 
   // JSX code for login form
@@ -47,6 +48,7 @@ const SignUp = () => {
             name='uname'
             required
             className={errorUsername ? "error" : ""}
+            onChange={(e) => setUserName(e.target.value)}
           />
         </div>
         <div className='input-container'>
@@ -56,12 +58,11 @@ const SignUp = () => {
             name='pass'
             required
             className={errorPassword ? "error" : ""}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className='button-container'>
-          <button type='submit' onClick={() => navigate("/signup2")}>
-            Next
-          </button>
+          <button type='submit'>Next</button>
         </div>
       </form>
     </div>
